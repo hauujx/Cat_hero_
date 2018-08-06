@@ -7,7 +7,7 @@ class Hero(pygame.sprite.Sprite):
     
     frames_r = dict() # khung hình nhân vật chuyển động sang phải
     
-    
+    set_sheet= set_sprite('cat',cg.State)
     
     bullet = list()
     def __init__(self):
@@ -15,9 +15,11 @@ class Hero(pygame.sprite.Sprite):
         
         
         # nạp hình ảnh nhân vật di chuyển sang phải
-        set_sheet= set_sprite('cat',cg.State)
-        set_sheet.get_image()
+        
+        self.set_sheet.get_image()
         self.frames_l = cg.frame_state
+        self.set_sheet.get_image()
+        self.frames_r = 
         print(self.frames_l)
         # nạp hình ảnh nhân vật di chuyển sang trái
         self.velocity = [0, 0] 
@@ -51,19 +53,16 @@ class Hero(pygame.sprite.Sprite):
     def update(self, dt): 
 
         """ cập nhật lại nhân vật """
+
         self._old_position = self._position[:]
 
-        self._position[0] +=self.velocity[0]  # chiều ngang
+        self._position[0] += self.velocity[0]  # chiều ngang
         
         self._position[1] += self.velocity[1]  # chiều cao 
         
-        self.rect.topleft = self._position
+        self.rect.topleft= self._position
         self.feet.midbottom = self.rect.midbottom
-        time_step = (pygame.time.get_ticks()/70)% (len(self.frames_l[self.state])-1)
-        
-        
-         
-         
+        time_step = (pygame.time.get_ticks()/70)% (len(self.frames_l[self.state])-1)  
         print(f"{self.state} :",int(time_step))
         self.image = self.frames_l[self.state][int(time_step)]
         
@@ -71,11 +70,20 @@ class Hero(pygame.sprite.Sprite):
         
 
     def move_back(self, dt):
-        
-        
         self._position[1] = self._old_position[1]
         self.rect.topleft = self._position
-        
         self.feet.midbottom = self.rect.midbottom
-    
 
+    def go_left (sefl,dt):
+        self.velocity[0] = -4
+        self.direction = "Left"
+        self.state ="Fall"
+
+    def go_right(self,dt) : 
+        self.velocity[0] = 4
+        self.direction = "Right"
+        self.state ="Walk"
+
+    def jump (self,dt) : 
+        self.velocity[0] = -12
+        self.state ="Jump"

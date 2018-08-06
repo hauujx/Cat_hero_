@@ -23,7 +23,7 @@ from chapater import Hero
 RESOURCES_DIR = 'data'
 
 HERO_MOVE_SPEED = 2.5 # pixels per second
-MAP_FILENAME = 'haha.tmx'
+MAP_FILENAME = 'winter_map.tmx'
 
 
 # simple wrapper to keep the screen resizeable
@@ -54,7 +54,7 @@ class QuestGame(object):
     def __init__(self):
 
         # true while running
-        self.running = False
+        self.running = True
         self.time_step = 0
         # load data from pytmx
         tmx_data = load_pygame(self.filename)
@@ -84,14 +84,14 @@ class QuestGame(object):
 
 
         # put the hero in the center of the map
-        self.hero.position = self.map_layer.map_rect.center
+        
         self.hero._position[0] += 200
         self.hero._position[1] += 100
 
                 # add our hero to the group
         self.group.add(self.hero)
 
-
+        self.map_layer.set_size(screens)
 
     def draw(self, surface):
 
@@ -104,70 +104,48 @@ class QuestGame(object):
     def handle_input(self,dt):
         """ Handle pygame input events
         """
-        poll = pygame.event.poll
+        
 
 
 
-        event = poll()
-        while event:
-            if event.type == QUIT:
+        
+        
+        for event in pygame.event.get():
+           if event.type ==pygame.QUIT:
                 self.running = False
-                break
+           if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.hero.velocity[0] = -HERO_MOVE_SPEED
+                    self.hero.direction = "Left"
+                    self.hero.state ="Fall"
+                    print(event.type)
+                if event.key == pygame.K_RIGHT:
+                    self.hero.velocity[0] = HERO_MOVE_SPEED
+                    self.hero.direction = "Right"
 
-            elif event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    self.running = False
-                    break
 
-                elif event.key == K_EQUALS:
-                    self.map_layer.zoom += .25
-
-                elif event.key == K_MINUS:
-                    value = self.map_layer.zoom - .25
-                    if value > 0:
-                        self.map_layer.zoom = value
-
+                    self.hero.state ="Run"
+                    print(event.type)
+                if event.key == pygame.K_UP:
+                    self.hero.velocity[1] =  -12
+                    self.hero.state ="Jump"
+                    print(event.type)
+                
+           else:
+                self.hero.velocity[0] = 0
+                self.hero.velocity[1] = 0
+                self.hero.state ="Idle"
             # this will be handled if the window is resized
-            elif event.type == VIDEORESIZE:
-                init_screen(event.w, event.h)
-                self.map_layer.set_size((event.w, event.h))
-
-            event = poll()
+        
 
         # using get_pressed is slightly less accurate than testing for events
         # but is much easier to use.
-        pressed = pygame.key.get_pressed()
-        if pressed[K_UP]:
-
-             self.hero.velocity[1] =  -6# HERO_MOVE_SPEED
-
-        elif pressed[K_DOWN]:
-            self.hero.velocity[1] = HERO_MOVE_SPEED
-            self.hero.state ="Jump"
-        else:
-            self.hero.velocity[1] = 0
-
-        if pressed[K_LEFT]:
-            self.hero.velocity[0] = -HERO_MOVE_SPEED
-            self.hero.direction = "Left"
-            self.hero.state ="Fall"
-        elif pressed[K_RIGHT]:
-
-            self.hero.velocity[0] = HERO_MOVE_SPEED
-            self.hero.direction = "Right"
-
-
-            self.hero.state ="Run"
-
-        elif pressed[K_UP]:
-            self.hero.state ="Jump"
-
-
-
-        else:
-            self.hero.velocity[0] = 0
-            self.hero.state ="Idle"
-
+         # User did something
+             # Flag that we are done so we exit this loop
+            
+                    
+             
+             
 
     def update(self, dt):
         """ Tasks that occur over time should be handled here
@@ -182,7 +160,8 @@ class QuestGame(object):
                 self.hero.move_back(dt)
                 print(sprite)
             else:
-                self.hero._position[1] +=2
+                self.hero._position[1] += 3.35
+                
 
 
 
