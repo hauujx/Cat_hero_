@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="21">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="22">
  <tileset firstgid="1" name="3" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <image source="image/png/Tiles/3.png" width="128" height="128"/>
  </tileset>
@@ -217,7 +217,7 @@
  <objectgroup name="wall">
   <object id="1" x="14" y="837" width="558" height="121"/>
   <object id="2" x="0" y="323" width="187" height="345"/>
-  <object id="3" x="647" y="678" width="342" height="55"/>
+  <object id="3" x="640.939" y="674.97" width="342" height="55"/>
   <object id="4" x="837" y="514" width="502.667" height="40.3333"/>
   <object id="5" x="1347" y="679" width="282" height="61"/>
   <object id="6" x="1635" y="837" width="249" height="121"/>
@@ -238,5 +238,6 @@
   <object id="20" x="3202.67" y="-4">
    <polyline points="0,0 0,962.667"/>
   </object>
+  <object id="21" x="1251.52" y="1006.06"/>
  </objectgroup>
 </map>

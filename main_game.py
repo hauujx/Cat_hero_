@@ -23,7 +23,7 @@ from chapater import Hero
 RESOURCES_DIR = 'data'
 
 HERO_MOVE_SPEED = 2.5 # pixels per second
-MAP_FILENAME = 'winter_map.tmx'
+MAP_FILENAME = 'haha.tmx'
 
 
 # simple wrapper to keep the screen resizeable
@@ -55,7 +55,7 @@ class QuestGame(object):
 
         # true while running
         self.running = False
-        self.time_step = 0 
+        self.time_step = 0
         # load data from pytmx
         tmx_data = load_pygame(self.filename)
 
@@ -81,23 +81,23 @@ class QuestGame(object):
         self.group = PyscrollGroup(map_layer=self.map_layer, default_layer=3)
 
         self.hero = Hero()
-       
+
 
         # put the hero in the center of the map
         self.hero.position = self.map_layer.map_rect.center
         self.hero._position[0] += 200
         self.hero._position[1] += 100
-        
+
                 # add our hero to the group
         self.group.add(self.hero)
-        
-        
+
+
 
     def draw(self, surface):
 
         # center the map/screen on our Hero
         self.group.center(self.hero.rect)
-        
+
         # draw the map and all sprites
         self.group.draw(surface)
 
@@ -105,8 +105,8 @@ class QuestGame(object):
         """ Handle pygame input events
         """
         poll = pygame.event.poll
-        
-        
+
+
 
         event = poll()
         while event:
@@ -138,9 +138,9 @@ class QuestGame(object):
         # but is much easier to use.
         pressed = pygame.key.get_pressed()
         if pressed[K_UP]:
-            
+
              self.hero.velocity[1] =  -6# HERO_MOVE_SPEED
-             
+
         elif pressed[K_DOWN]:
             self.hero.velocity[1] = HERO_MOVE_SPEED
             self.hero.state ="Jump"
@@ -152,13 +152,13 @@ class QuestGame(object):
             self.hero.direction = "Left"
             self.hero.state ="Fall"
         elif pressed[K_RIGHT]:
-            
+
             self.hero.velocity[0] = HERO_MOVE_SPEED
             self.hero.direction = "Right"
-            
-            
+
+
             self.hero.state ="Run"
-            
+
         elif pressed[K_UP]:
             self.hero.state ="Jump"
 
@@ -183,10 +183,10 @@ class QuestGame(object):
                 print(sprite)
             else:
                 self.hero._position[1] +=2
-            
-         
-        
-       
+
+
+
+
     def run(self):
         """ Run the game loop
         """
@@ -201,7 +201,7 @@ class QuestGame(object):
                 dt = clock.tick() / 1000.
                 times.append(clock.get_fps())
                 #print(sum(times)/len(times))
-                
+
 
                 self.handle_input(dt)
                 self.update(dt)
