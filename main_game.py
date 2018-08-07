@@ -23,7 +23,7 @@ from chapater import Hero
 RESOURCES_DIR = 'data'
 
 HERO_MOVE_SPEED = 2.5 # pixels per second
-MAP_FILENAME = 'winter_map.tmx'
+MAP_FILENAME = 'haha.tmx'
 
 
 # simple wrapper to keep the screen resizeable
@@ -85,8 +85,8 @@ class QuestGame(object):
 
         # put the hero in the center of the map
         
-        self.hero._position[0] += 200
-        self.hero._position[1] += 100
+        self.hero.vi_tri[0] += 200
+        self.hero.vi_tri[1] += 100
 
                 # add our hero to the group
         self.group.add(self.hero)
@@ -102,51 +102,32 @@ class QuestGame(object):
         self.group.draw(surface)
 
     def handle_input(self,dt):
-        """ Handle pygame input events
-        """
-        
-
-
-
-        
-        
+        """ xử lý sự kiện nhấn nút """
         for event in pygame.event.get():
-           if event.type ==pygame.QUIT:
-                self.running = False
-           if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    self.hero.velocity[0] = -HERO_MOVE_SPEED
-                    self.hero.direction = "Left"
-                    self.hero.state ="Fall"
-                    print(event.type)
-                if event.key == pygame.K_RIGHT:
-                    self.hero.velocity[0] = HERO_MOVE_SPEED
-                    self.hero.direction = "Right"
-
-
-                    self.hero.state ="Run"
-                    print(event.type)
-                if event.key == pygame.K_UP:
-                    self.hero.velocity[1] =  -12
-                    self.hero.state ="Jump"
-                    print(event.type)
-                
-           else:
-                self.hero.velocity[0] = 0
-                self.hero.velocity[1] = 0
-                self.hero.state ="Idle"
-            # this will be handled if the window is resized
-        
-
-        # using get_pressed is slightly less accurate than testing for events
-        # but is much easier to use.
-         # User did something
-             # Flag that we are done so we exit this loop
             
+            if event.type ==pygame.QUIT:
+                if event.key == pygame.K_ESCAPE : 
+                    return False
+            elif event.type ==pygame.KEYDOWN : 
+                if event.key == pygame.K_ESCAPE:
+                    return False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.hero.go_left(dt)
                     
-             
-             
+                if event.key == pygame.K_RIGHT:
+                    self.hero.go_right(dt)
+                    
+                if event.key == pygame.K_UP :
 
+                    for sprite in self.group.sprites():
+                        if sprite.feet.collidelist(self.walls) >-1:
+                            self.hero.jump(dt)
+                            
+              
+            else:
+                self.hero.stop(dt)
+                    
     def update(self, dt):
         """ Tasks that occur over time should be handled here
         """
@@ -158,10 +139,14 @@ class QuestGame(object):
         for sprite in self.group.sprites():
             if sprite.feet.collidelist(self.walls) >-1:
                 self.hero.move_back(dt)
-                print(sprite)
+                self.hero.va_cham = True
+
             else:
-                self.hero._position[1] += 3.35
+                self.hero.vi_tri[1] += 2
                 
+        print(self.hero.direction)
+
+        
 
 
 
@@ -180,7 +165,6 @@ class QuestGame(object):
                 dt = clock.tick() / 1000.
                 times.append(clock.get_fps())
                 #print(sum(times)/len(times))
-
 
                 self.handle_input(dt)
                 self.update(dt)

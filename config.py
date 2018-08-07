@@ -14,7 +14,14 @@ Black = (0,0,0)
 White = (255,255,255)
 Blue =  (0,0,255)
 #==== kích thước frames sprite ==== #
-frame_state = {'Run':[],'Dead':[],'Fall':[],'Hurt':[],'Idle':[],'Jump':[],'Slide':[],'Walk':[]}
+""" bộ nhớ đệm sprite trái """
+frame_state_l = {'Run':[],'Dead':[],'Fall':[],'Hurt':[],'Idle':[],'Jump':[],'Slide':[],'Walk':[]}
+
+# bộ nhớ đệm sprite phải
+
+frame_state_r = {'Run':[],'Dead':[],'Fall':[],'Hurt':[],'Idle':[],'Jump':[],'Slide':[],'Walk':[]}
+
+
 Size_frames = { 
     "cat" : {
 					"Run" : [(24, 0, 80,110),

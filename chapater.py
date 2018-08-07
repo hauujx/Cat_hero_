@@ -7,7 +7,7 @@ class Hero(pygame.sprite.Sprite):
     
     frames_r = dict() # khung hình nhân vật chuyển động sang phải
     
-    set_sheet= set_sprite('cat',cg.State)
+    
     
     bullet = list()
     def __init__(self):
@@ -15,19 +15,27 @@ class Hero(pygame.sprite.Sprite):
         
         
         # nạp hình ảnh nhân vật di chuyển sang phải
-        
-        self.set_sheet.get_image()
-        self.frames_l = cg.frame_state
-        self.set_sheet.get_image()
-        self.frames_r = 
-        print(self.frames_l)
-        # nạp hình ảnh nhân vật di chuyển sang trái
-        self.velocity = [0, 0] 
-        self._position = [0, 0]
-        self._old_position = self.position
-        self.direction = "Right"
-        self.state = "Run"
+        set_sheet= set_sprite('cat',cg.State,"Left")
 
+        set_sheet.get_image()
+
+        self.frames_l = cg.frame_state_l
+        
+        set_sheet= set_sprite('cat',cg.State,"Right")
+        
+        set_sheet.get_image()
+
+        self.frames_r = cg.frame_state_r
+
+   
+        # nạp hình ảnh nhân vật di chuyển sang trái
+        self.change_x = 0
+        self.change_y = 0
+        self.vi_tri = [0, 0] 
+        self.vi_tri_bd = self.vi_tri
+        self.direction = "Left"
+        self.state = "Run"
+        self.va_cham =""
         # 
         # đặt khung hình nhân vật mới bắt đầu là khung 4
         # 
@@ -40,50 +48,58 @@ class Hero(pygame.sprite.Sprite):
         
         self.feet = pygame.Rect(0, 0,60, 90)
 
-
         
-    @property
-    def position(self):
-        return list(self._position)
-
-    @position.setter
-    def position(self, value):
-        self._position = list(value)
+        
+   
 
     def update(self, dt): 
 
         """ cập nhật lại nhân vật """
 
-        self._old_position = self._position[:]
+        self.vi_tri_bd = self.vi_tri[:]
 
-        self._position[0] += self.velocity[0]  # chiều ngang
+        self.vi_tri[0] += self.change_x  # chiều ngang
         
-        self._position[1] += self.velocity[1]  # chiều cao 
+        self.vi_tri[1] += self.change_y # chiều cao 
         
-        self.rect.topleft= self._position
+        self.rect.topleft= self.vi_tri
         self.feet.midbottom = self.rect.midbottom
-        time_step = (pygame.time.get_ticks()/70)% (len(self.frames_l[self.state])-1)  
-        print(f"{self.state} :",int(time_step))
-        self.image = self.frames_l[self.state][int(time_step)]
         
+
+        # update hình ảnh nhân vật
         
-        
+        if self.direction == "Left" :
+           time_step = (pygame.time.get_ticks()/70)% (len(self.frames_l[self.state])-1)  
+           print(f"Left {self.state} : {int(time_step)}")
+           self.image = self.frames_l[self.state][int(time_step)]
+        elif self.direction == "Right" :
+           time_step = (pygame.time.get_ticks()/70)% (len(self.frames_r[self.state])-1)  
+           print(f"Rigth {self.state} : {int(time_step)}")
+           self.image = self.frames_r[self.state][int(time_step)] 
 
     def move_back(self, dt):
-        self._position[1] = self._old_position[1]
-        self.rect.topleft = self._position
+        self.vi_tri[1] = self.vi_tri_bd[1]
+        self.rect.topleft = self.vi_tri
         self.feet.midbottom = self.rect.midbottom
 
-    def go_left (sefl,dt):
-        self.velocity[0] = -4
+    def go_left (self,dt):
+        self.change_x = -4
         self.direction = "Left"
-        self.state ="Fall"
+        self.state ="Run"
 
     def go_right(self,dt) : 
-        self.velocity[0] = 4
+        self.change_x = 4
         self.direction = "Right"
-        self.state ="Walk"
+        self.state ="Run"
 
     def jump (self,dt) : 
-        self.velocity[0] = -12
+        
+        self.change_y = -12
         self.state ="Jump"
+    def stop(self,dt):
+        self.change_y = 0 
+        self.change_x = 0 
+        self.state = "Idle"
+        print("stop")
+
+        

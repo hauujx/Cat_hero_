@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="108" height="27" tilewidth="32" tileheight="32" infinite="0" nextobjectid="44">
  <tileset firstgid="1" name="BG" tilewidth="32" tileheight="32" spacing="1" tilecount="1458" columns="54">
-  <image source="../../../tiledsets/png/BG/BG.png" width="1800" height="893"/>
+  <image source="image/png/BG/BG.png" width="1800" height="893"/>
  </tileset>
  <tileset firstgid="1459" name="18" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/18.png" width="128" height="128"/>
+  <image source="image/png/Tiles/18.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="1468" name="17" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/17.png" width="128" height="99"/>
+  <image source="image/png/Tiles/17.png" width="128" height="99"/>
  </tileset>
  <tileset firstgid="1477" name="1" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/1.png" width="128" height="128"/>
+  <image source="image/png/Tiles/1.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="1486" name="2" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/2.png" width="128" height="128"/>
+  <image source="image/png/Tiles/2.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="1495" name="4" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/4.png" width="128" height="128"/>
+  <image source="image/png/Tiles/4.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="1504" name="5" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Tiles/5.png" width="128" height="128"/>
+  <image source="image/png/Tiles/5.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="1513" name="14" tilewidth="32" tileheight="32" spacing="1" tilecount="6" columns="3">
-  <image source="../../../tiledsets/png/Tiles/14.png" width="128" height="93"/>
+  <image source="image/png/Tiles/14.png" width="128" height="93"/>
  </tileset>
  <tileset firstgid="1519" name="15" tilewidth="32" tileheight="32" spacing="1" tilecount="6" columns="3">
-  <image source="../../../tiledsets/png/Tiles/15.png" width="128" height="93"/>
+  <image source="image/png/Tiles/15.png" width="128" height="93"/>
  </tileset>
  <tileset firstgid="1525" name="Sign_2" tilewidth="32" tileheight="32" spacing="1" tilecount="4" columns="2">
-  <image source="../../../tiledsets/png/Object/Sign_2.png" width="87" height="93"/>
+  <image source="image/png/Object/Sign_2.png" width="87" height="93"/>
  </tileset>
  <tileset firstgid="1529" name="Crate" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Object/Crate.png" width="101" height="101"/>
+  <image source="image/png/Object/Crate.png" width="101" height="101"/>
  </tileset>
  <tileset firstgid="1538" name="SnowMan" tilewidth="32" tileheight="32" spacing="1" tilecount="30" columns="5">
-  <image source="../../../tiledsets/png/Object/SnowMan.png" width="193" height="210"/>
+  <image source="image/png/Object/SnowMan.png" width="193" height="210"/>
  </tileset>
  <tileset firstgid="1568" name="IceBox" tilewidth="32" tileheight="32" spacing="1" tilecount="9" columns="3">
-  <image source="../../../tiledsets/png/Object/IceBox.png" width="101" height="101"/>
+  <image source="image/png/Object/IceBox.png" width="101" height="101"/>
  </tileset>
  <tileset firstgid="1577" name="Igloo" tilewidth="32" tileheight="32" spacing="1" tilecount="90" columns="15">
-  <image source="../../../tiledsets/png/Object/Igloo.png" width="511" height="201"/>
+  <image source="image/png/Object/Igloo.png" width="511" height="201"/>
  </tileset>
  <tileset firstgid="1667" name="Stone" tilewidth="32" tileheight="32" spacing="1" tilecount="6" columns="3">
-  <image source="../../../tiledsets/png/Object/Stone.png" width="124" height="78"/>
+  <image source="image/png/Object/Stone.png" width="124" height="78"/>
  </tileset>
  <tileset firstgid="1673" name="Tree_2" tilewidth="32" tileheight="32" spacing="1" tilecount="48" columns="6">
-  <image source="../../../tiledsets/png/Object/Tree_2.png" width="228" height="280"/>
+  <image source="image/png/Object/Tree_2.png" width="228" height="280"/>
  </tileset>
  <layer name="Tile Layer 1" width="108" height="27">
   <data encoding="csv">
